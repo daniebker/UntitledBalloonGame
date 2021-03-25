@@ -1,10 +1,10 @@
 package com.daniebker.balloongame;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.daniebker.balloongame.input.InputCommand;
+import com.daniebker.balloongame.input.InputHandler;
 
 public class GameScreen implements Screen {
     private final BalloonGame game;
@@ -32,7 +32,7 @@ public class GameScreen implements Screen {
         ScreenUtils.clear(0, 0, 0.2f, 1);
 
         InputCommand inputCommand = inputHandler.handleInput();
-        if(inputCommand != null) {
+        if (inputCommand != null) {
             inputCommand.execute(player);
         }
 

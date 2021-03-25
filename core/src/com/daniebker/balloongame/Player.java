@@ -82,6 +82,10 @@ public class Player {
         if (state == STATE.GROUNDED) {
             position.x -= movementSpeed * delta;
         }
+
+        if(position.x < 0) {
+            position.x = 0;
+        }
     }
 
     private void moveRight(float delta) {

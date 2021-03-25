@@ -1,4 +1,6 @@
-package com.daniebker.balloongame;
+package com.daniebker.balloongame.input;
+
+import com.daniebker.balloongame.Player;
 
 public class MoveLeftCommand implements InputCommand {
     @Override
