@@ -3,33 +3,26 @@ package com.daniebker.balloongame;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
-public class Player {
+public class Player extends GameObject {
 
-    private final Vector2 position;
-    private final Rectangle boundingBox;
-    private final int width;
-    private final int height;
     private final STATE state;
     private final int movementSpeed;
 
     private MOVEMENT_STATE movementState;
 
     public Player() {
-        position = new Vector2();
-        boundingBox = new Rectangle();
-        width = 64;
-        height = 64;
+        super();
         state = STATE.GROUNDED;
         movementState = MOVEMENT_STATE.STILL;
         movementSpeed = 100;
+        textureKey = AssetRenderer.TEXTURE_KEY.PLAYER;
     }
 
     public void init() {
+        super.init();
         position.set(128, 64);
         boundingBox
-                .setPosition(position)
-                .setWidth(width)
-                .setHeight(height);
+                .setPosition(position);
     }
 
     public void update(float delta) {
@@ -50,24 +43,8 @@ public class Player {
                 break;
         }
 
-        boundingBox.setPosition(position);
         movementState = MOVEMENT_STATE.STILL;
-    }
-
-    public float getX() {
-        return position.x;
-    }
-
-    public float getY() {
-        return position.y;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
+        super.update(delta);
     }
 
     public void setMoveLeft() {
@@ -83,7 +60,7 @@ public class Player {
             position.x -= movementSpeed * delta;
         }
 
-        if(position.x < 0) {
+        if (position.x < 0) {
             position.x = 0;
         }
     }

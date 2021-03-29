@@ -12,10 +12,12 @@ public class GameScreen implements Screen {
     private final OrthographicCamera camera;
     private final AssetRenderer assetRenderer;
     private final InputHandler inputHandler;
+    private final Balloon balloon;
 
     public GameScreen(BalloonGame balloonGame) {
         game = balloonGame;
         player = new Player();
+        balloon = new Balloon();
         camera = new OrthographicCamera();
         assetRenderer = new AssetRenderer();
         inputHandler = new InputHandler();
@@ -24,6 +26,7 @@ public class GameScreen implements Screen {
     @Override
     public void show() {
         player.init();
+        balloon.init();
         camera.setToOrtho(false, 800, 480);
     }
 
@@ -41,7 +44,26 @@ public class GameScreen implements Screen {
 
         game.batch.begin();
         assetRenderer.render(game.batch, player);
+        assetRenderer.render(game.batch, balloon);
+        drawGround();
         game.batch.end();
+    }
+
+    private void drawGround() {
+        for ( int x =0 ; x <= 800 - 32; x += 64) {
+            final int finalX = x;
+            assetRenderer.render(game.batch, new GameObject() {
+                @Override
+                public float getX() {
+                    return finalX;
+                }
+
+                @Override
+                public AssetRenderer.TEXTURE_KEY getTextureKey() {
+                    return AssetRenderer.TEXTURE_KEY.GROUND;
+                }
+            });
+        }
     }
 
     @Override
