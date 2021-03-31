@@ -3,6 +3,8 @@ package com.daniebker.balloongame;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
+import java.util.Observable;
+
 public abstract class GameObject {
     protected final Vector2 position;
     protected final Rectangle boundingBox;
@@ -42,6 +44,10 @@ public abstract class GameObject {
 
     public int getHeight() {
         return height;
+    }
+
+    public Rectangle getBoundingBox() {
+        return boundingBox;
     }
 
     public AssetRenderer.TEXTURE_KEY getTextureKey() {

@@ -42,6 +42,14 @@ public class GameScreen implements Screen {
         camera.update();
         player.update(delta);
 
+        // TODO: Put this somewhere else.
+        if (player.getBoundingBox().overlaps(balloon.getBoundingBox())) {
+            player.setState(Player.STATE.FLOATING);
+            balloon.moveTo(balloon.getX() + 35 * delta, balloon.getY() + 40 * delta);
+        } else {
+            player.setState(Player.STATE.GROUNDED);
+        }
+
         game.batch.begin();
         assetRenderer.render(game.batch, player);
         assetRenderer.render(game.batch, balloon);
@@ -50,8 +58,9 @@ public class GameScreen implements Screen {
     }
 
     private void drawGround() {
-        for ( int x =0 ; x <= 800 - 32; x += 64) {
+        for (int x = 0; x <= 800 - 32; x += 64) {
             final int finalX = x;
+            // TODO: Creating a new object on every render loop.
             assetRenderer.render(game.batch, new GameObject() {
                 @Override
                 public float getX() {

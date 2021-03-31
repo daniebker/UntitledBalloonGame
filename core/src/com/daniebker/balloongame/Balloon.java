@@ -17,4 +17,9 @@ public class Balloon extends  GameObject {
         boundingBox
                 .setPosition(position);
     }
+
+    public void moveTo(float x, float y) {
+        position.set(x, y);
+        boundingBox.setPosition(position);
+    }
 }

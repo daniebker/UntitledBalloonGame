@@ -1,3 +1,9 @@
+## 2021-03-31 
+
+* Moving the balloon with the player.
+  * Thought about using the Observer pattern and notifying the ballon at the same time but in the end makes as much sense to apply the same logic to the balloon. 
+* Handled collisions with balloon and player.
+
 ## 2021-03-29
 
 * Added Balloon Sprite

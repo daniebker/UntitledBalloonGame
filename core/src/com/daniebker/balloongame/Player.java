@@ -3,9 +3,11 @@ package com.daniebker.balloongame;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
+import java.util.Observable;
+
 public class Player extends GameObject {
 
-    private final STATE state;
+    private STATE state;
     private final int movementSpeed;
 
     private MOVEMENT_STATE movementState;
@@ -69,6 +71,10 @@ public class Player extends GameObject {
         if (state == STATE.GROUNDED) {
             position.x += movementSpeed * delta;
         }
+    }
+
+    public void setState(STATE value) {
+        state = value;
     }
 
     public enum STATE {
